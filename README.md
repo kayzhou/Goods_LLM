@@ -8,6 +8,7 @@
 
 ## 关键代码流程
 
+### 传统深度模型
 -  cnn_tf.py TF-IDF结合CNN模型
 -  cnn_wv.py Word2Vec结合CNN模型
 -  rnn_tf.py TF-IDF结合RNN模型
@@ -17,12 +18,13 @@
 -  gru_tf.py TF-IDF结合GRU模型
 -  gru_wv.py Word2Vec结合GRU模型
 
+### 预训练模型
 -  bert.py BERT模型
 -  albert.py ALBERT模型
 -  roberta.py RoBERTa模型
 -  ernie.py ERNIE模型
--  train_gpt.py 训练gpt模型
--  output_gpt.py 输出gpt模型结果
+-  train_gpt.py 训练gpt模型（没有预训练）
+-  output_gpt.py 输出gpt模型结果（没有预训练）
 
 ## 大语言模型
 -  alpaca.py 输出Alpaca模型的结果

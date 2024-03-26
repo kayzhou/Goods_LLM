@@ -1,7 +1,7 @@
 import csv
 import time
 import re
-from openai import OpenAI
+from openai_inference import OpenAI
 
 client = OpenAI()
 
@@ -12,8 +12,8 @@ def save_last_processed_index(file_path, index):
 
 # 文件路径和参数
 csv_file_path = '/Users/lgq/Documents/大模型/毕设/代码/毕设/data/蚂蚁商联数据.csv'
-output_filename = '/Users/lgq/Documents/大模型/毕设/代码/代码/openaigpt/analysis_results.txt'
-processed_index_file = '/Users/lgq/Documents/大模型/毕设/代码/代码/openaigpt/processed_index.txt'
+output_filename = '/Users/lgq/Documents/大模型/毕设/代码/代码/openaigpt/finetune_analysis_results.txt'
+processed_index_file = '/Users/lgq/Documents/大模型/毕设/代码/代码/openaigpt/finetune_processed_index.txt'
 
 # 读取上次处理的商品索引
 try:
@@ -36,9 +36,9 @@ with open(output_filename, 'a', encoding='utf-8') as outfile:
             }
 
             completion = client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="ft:gpt-3.5-turbo-0125:personal:800data:91cDxJCY",
                 messages=[
-                    {"role": "system", "content": "你是个超级人工智能，可以解决一切问题"},
+                    {"role": "system", "content": "你是一个知识丰富的人工智能助手，用户将用中文向你提问，你将根据你的知识用中文来如实回答问题"},
                     {"role": "user", "content": "请对下面的商品进行分析判断: 商品编号: 6900000058312, 商品名称: BBQ白木柄烧烤麻花针12支装"},
                     {"role": "assistant", "content": "{\"商品名称\": \"BBQ白木柄烧烤麻花针12支装\", \"商品编号\": \"6900000058312\", \"多维标注\": {\"原料\": \"麻\", \"连装\": \"12支装\", \"包装方式\": \"支装\"}}"},
                     {"role": "user", "content": f"请对下面的商品进行分析判断: 商品编号: {product['商品编号']}, 商品名称: {product['商品名称']}"}

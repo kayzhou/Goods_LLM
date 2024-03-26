@@ -5,7 +5,7 @@ from torch import nn, optim
 import numpy as np
 import time
 from tqdm import tqdm
-from gpt_model import *
+from llm.gpt_model import *
 
 def make_data(datas):
     train_datas =[]

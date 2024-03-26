@@ -1,5 +1,5 @@
 import torch
-from gpt_model import GPT
+from llm.gpt_model import GPT
 
 if __name__ == '__main__':
     # 设置GPU设备

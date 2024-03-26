@@ -1,27 +1,24 @@
-from openai import OpenAI
+from openai_inference import OpenAI
 client = OpenAI()
 
-# # 创建文件并上传微调数据
-# file_response = client.files.create(
-#     file = open("/Users/lgq/Documents/大模型/毕设/代码/代码/openaigpt/train_data.jsonl", "rb"),
-#     purpose = "fine-tune",
-# )
+# 创建文件并上传微调数据
+file_response = client.files.create(
+    file = open("/Users/lgq/Documents/大模型/毕设/代码/代码/openaigpt/train_data.jsonl", "rb"),
+    purpose = "fine-tune",
+)
 
-# # 获取文件的ID
-# file_id = file_response.id
-# print(file_id)
+# 获取文件的ID
+file_id = file_response.id
+print(file_id)
 
-# # 启动微调任务
-# client.fine_tuning.jobs.create(
-#     training_file=file_id,  # 传入文件ID而不是文件对象
-#     model="gpt-3.5-turbo",
-#     suffix = "800data"
-# )
-
-
+# 启动微调任务
+client.fine_tuning.jobs.create(
+    training_file=file_id,  # 传入文件ID而不是文件对象
+    model="gpt-3.5-turbo",
+    suffix = "800data"
+)
 
 print(client.fine_tuning.jobs.list(limit=1))
-
 
 # file_id = "file-lo8ZIyReS02dxLY13LciAsc4"
 # completion = client.chat.completions.create(

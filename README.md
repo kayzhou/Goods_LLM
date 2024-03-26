@@ -23,26 +23,27 @@
 -  albert.py ALBERT模型
 -  roberta.py RoBERTa模型
 -  ernie.py ERNIE模型
--  train_gpt.py 训练gpt模型（没有预训练）
--  output_gpt.py 输出gpt模型结果（没有预训练）
 
 ## 大语言模型 > llm
--  alpaca.py 输出Alpaca模型的结果
--  gemma.py 输出Gemma模型的结果
--  gemma_inference.py 输出微调Gemma模型的结果
--  openai.py 输出openai的结果
--  openai_finetune.py OpenAI微调后的结果输出
+-  alpaca_inference.py 输出Alpaca模型的结果
+-  gemma_finetune.py 对gemma模型微调
+-  gemma_finetune_inference.py 输出微调Gemma模型结果
+-  gemma_inference.py 输出Gemma模型结果
+-  gemma_merge_lora.py 将LoRA合并到原始模型
+-  gpt_get_vocab.py 生成GPT-1.0字典信息
+-  gpt_inference.py 输出GPT-1.0模型结果
+-  gpt_model.py GPT-1.0模型结构
+-  gpt_train.py 训练GPT-1.0
+-  openai_finetune.py 微调GPT-3.5-turbo模型
+-  openai_finetune_inference.py 输出微调后的GPT-3.5-turbo结果
+-  openai_inference.py 输出GPT-3.5-turbo模型结果
 
 ## 辅助代码 > utils
 -  BLEU.py 计算BLEU得分
--  data_process_gpt.py gpt模型的数据预处理
--  generate_data_gpt.py 处理原始数据集为指定格式
--  get_vocab_gpt.py 生成字典信息
--  gpt_model.py gpt模型的实现
+-  data_generate_llm.py 生成llm所需的对话数据格式
 -  data_process_alpaca.py Alpaca模型的数据预处理
--  gemma_finetune.py 微调gemma模型
--  gemma_merge_lora.py 将LoRA适配器合并到原始的gemma模型中
--  data_process_finetune_openai.py 微调的OpenAI模型的数据预处理
--  data_process_openai.py OpenAI模型的数据预处理
+-  data_process_finetune_openai.py 微调GPT-3.5-turbo模型的数据预处理
+-  data_process_gemma.py Gemma模型的数据预处理
+-  data_process_gpt.py GPT-1.0模型的数据预处理
+-  data_process_openai.py GPT-3.5-turbo模型的数据预处理
 -  hardware_information.py 查看硬件信息
--  finetune_openai.py 调用OpenAI的接口进行微调训练

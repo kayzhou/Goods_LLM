@@ -1,11 +1,5 @@
 # 基于语言模型的商品多级与多标签分类研究
 
-## 基础流程
-
-1. 先获取四个传统深度学习模型的结果
-2. 再获取四个预训练模型的结果
-3. 最后获取四个大语言模型的结果
-
 ## 关键代码流程
 
 ### 传统深度模型 > dl
@@ -24,7 +18,7 @@
 -  roberta.py RoBERTa模型
 -  ernie.py ERNIE模型
 
-## 大语言模型 > llm
+### 大语言模型 > llm
 -  alpaca_inference.py 输出Alpaca模型的结果
 -  gemma_finetune.py 对gemma模型微调
 -  gemma_finetune_inference.py 输出微调Gemma模型结果
@@ -38,7 +32,7 @@
 -  openai_finetune_inference.py 输出微调后的GPT-3.5-turbo结果
 -  openai_inference.py 输出GPT-3.5-turbo模型结果
 
-## 辅助代码 > utils
+### 辅助代码 > utils
 -  BLEU.py 计算BLEU得分
 -  data_generate_llm.py 生成llm所需的对话数据格式
 -  data_process_alpaca.py Alpaca模型的数据预处理

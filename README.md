@@ -22,11 +22,11 @@
 -  alpaca_inference.py 输出Alpaca模型的结果
 -  gemma_finetune.py 对gemma模型微调
 -  gemma_finetune_inference.py 输出微调Gemma模型结果
--  gemma_inference.py 输出Gemma模型结果
+-  gemma_inference.py 输出Gemma模型结果（需要每次访问加载模型，可优化）
 -  gemma_merge_lora.py 将LoRA合并到原始模型
 -  gpt_get_vocab.py 生成GPT-1.0字典信息
 -  gpt_inference.py 输出GPT-1.0模型结果
--  gpt_model.py GPT-1.0模型结构
+-  gpt_model.py GPT-1.0模型结构（自己构造）
 -  gpt_train.py 训练GPT-1.0
 -  openai_finetune.py 微调GPT-3.5-turbo模型
 -  openai_finetune_inference.py 输出微调后的GPT-3.5-turbo结果

@@ -1,0 +1,76 @@
+基础模型直接运行run.sh
+大模型看examples文件夹
+    单机看accelerate的single_config
+    lora_multi_gpu根据不同模型不同数据修改具体配置
+    merge_lora的sft用来合并
+
+
+单节点多gpu
+    使用 Accelerate 进行单节点多GPU训练：
+
+        bash examples/lora_multi_gpu/single_node_mayi_baichuan2-7b-chat.sh
+        bash examples/lora_multi_gpu/single_node_mayi_gemma-7b-chat.sh
+        bash examples/lora_multi_gpu/single_node_mayi_llama2-7b-chat.sh
+        bash examples/lora_multi_gpu/single_node_mayi_llama3-8b-chat.sh
+        bash examples/lora_multi_gpu/single_node_mayi_qwen1.5-7b-chat.sh
+
+    输出的lora适配器模型位置保存在LLaMA-Factory/saves目录下
+
+    合并 LoRA 适配器: 
+        
+        CUDA_VISIBLE_DEVICES=0 llamafactory-cli export examples/merge_lora/baichuan2-7b-chat_lora_sft.yaml
+        CUDA_VISIBLE_DEVICES=0 llamafactory-cli export examples/merge_lora/gemma-7b-chat_lora_sft.yaml
+        CUDA_VISIBLE_DEVICES=0 llamafactory-cli export examples/merge_lora/llama2-7b-chat_lora_sft.yaml
+        CUDA_VISIBLE_DEVICES=0 llamafactory-cli export examples/merge_lora/llama3-8b-chat_lora_sft.yaml
+        CUDA_VISIBLE_DEVICES=0 llamafactory-cli export examples/merge_lora/qwen1.5-7b-chat_lora_sft.yaml
+        CUDA_VISIBLE_DEVICES=0 llamafactory-cli export examples/merge_lora/chinese-llama3-8b-chat_lora_sft.yaml
+
+        CUDA_VISIBLE_DEVICES=0 llamafactory-cli export examples/merge_lora/chinese-llama3-8b-chat_lora_sft_duojibie.yaml
+        CUDA_VISIBLE_DEVICES=0 llamafactory-cli export examples/merge_lora/qwen1.5-7b-chat_lora_sft_duojiebie.yaml
+
+        CUDA_VISIBLE_DEVICES=0 llamafactory-cli export examples/merge_lora/chinese-llama3-8b-chat_lora_sft_times.yaml
+
+
+
+    输出的合并后的模型保存到了LLaMA-Factory/models目录下
+
+
+    vllm推理
+    CUDA_VISIBLE_DEVICES=0 llamafactory-cli chat examples/inference/chinese-llama3-8b-chat_vllm_times.yaml
+
+
+    批量预测并计算 BLEU 和 ROUGE 分数
+
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train /home/llm/liguanqun/llama3/code/LLaMA-Factory/examples/lora_single_gpu/times/chinese-llama3-8b-chat_lora_predict_times_series.yaml
+
+
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duobiaoqian_test_1.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duobiaoqian_test_2.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duobiaoqian_test_3.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duobiaoqian_test_4.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duobiaoqian_test_5.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama3-8b-chat_lora_predict_duobiaoqian_test_1.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama3-8b-chat_lora_predict_duobiaoqian_test_2.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama3-8b-chat_lora_predict_duobiaoqian_test_3.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama3-8b-chat_lora_predict_duobiaoqian_test_4.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama3-8b-chat_lora_predict_duobiaoqian_test_5.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama2-7b-chat_lora_predict_duobiaoqian_test_1.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama2-7b-chat_lora_predict_duobiaoqian_test_2.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama2-7b-chat_lora_predict_duobiaoqian_test_3.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama2-7b-chat_lora_predict_duobiaoqian_test_4.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/llama2-7b-chat_lora_predict_duobiaoqian_test_5.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/baichuan2-7b-chat_lora_predict_duobiaoqian_test_1.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/baichuan2-7b-chat_lora_predict_duobiaoqian_test_2.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/baichuan2-7b-chat_lora_predict_duobiaoqian_test_3.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/baichuan2-7b-chat_lora_predict_duobiaoqian_test_4.yaml
+    CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/lora_single_gpu/baichuan2-7b-chat_lora_predict_duobiaoqian_test_5.yaml
+
+
+    CUDA_VISIBLE_DEVICES=0 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duojibie_test_1.yaml
+    CUDA_VISIBLE_DEVICES=1 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duojibie_test_2.yaml
+    CUDA_VISIBLE_DEVICES=1 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duojibie_test_3.yaml
+    CUDA_VISIBLE_DEVICES=1 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duojibie_test_4.yaml
+    CUDA_VISIBLE_DEVICES=1 llamafactory-cli train examples/lora_single_gpu/qwen1.5-7b-chat_lora_predict_duojibie_test_5.yaml
+
+
+    CUDA_VISIBLE_DEVICES=0 llamafactory-cli train examples/lora_single_gpu/chinese-llama3-8b-chat_lora_predict_duobiaoqian_test_1.yaml
